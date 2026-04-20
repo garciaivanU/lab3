@@ -1,0 +1,22 @@
+Mon Apr 20 02:11:18 AM UTC 2026: 
+ hashmap.c | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
+Compilation failed
+In file included from test.c:5:
+hashmap.c: In function ‘createMap’:
+hashmap.c:48:39: error: passing argument 1 of ‘malloc’ makes integer from pointer without a cast [-Wint-conversion]
+   48 |     HashMap *map = (HashMap *) malloc(map, sizeof(HashMap));
+      |                                       ^~~
+      |                                       |
+      |                                       HashMap * {aka struct HashMap *}
+In file included from test.c:2:
+/nix/store/41pf3md9zgpda9kwh6rzn5kaddf7i0lp-glibc-2.40-66-dev/include/stdlib.h:672:29: note: expected ‘size_t’ {aka ‘long unsigned int’} but argument is of type ‘HashMap *’ {aka ‘struct HashMap *’}
+  672 | extern void *malloc (size_t __size) __THROW __attribute_malloc__
+      |                      ~~~~~~~^~~~~~
+hashmap.c:48:32: error: too many arguments to function ‘malloc’
+   48 |     HashMap *map = (HashMap *) malloc(map, sizeof(HashMap));
+      |                                ^~~~~~
+/nix/store/41pf3md9zgpda9kwh6rzn5kaddf7i0lp-glibc-2.40-66-dev/include/stdlib.h:672:14: note: declared here
+  672 | extern void *malloc (size_t __size) __THROW __attribute_malloc__
+      |              ^~~~~~
+8a6d08a
