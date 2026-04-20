@@ -64,3 +64,9 @@ hashmap.c:165:10: error: unused variable ‘capacidad_antigua’ [-Werror=unused
       |          ^~~~~~~~~~~~~~~~~
 cc1: all warnings being treated as errors
 63d5a30
+Mon Apr 20 02:54:10 AM UTC 2026: 
+ hashmap.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ tests:  17|0
+total_score: 60/60
+c542388

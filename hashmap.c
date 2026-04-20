@@ -168,7 +168,7 @@ void enlarge(HashMap * map) {
     map->buckets = (Pair **) calloc(map->capacity, sizeof(Pair *)); // Se reinicia el arreglo en el map original con el tamaño nuevo para los datos.
     map->size = 0;
 
-    for (long i = 0; i < old_capacity; i++) {
+    for (long i = 0; i < capacidad_antigua; i++) {
         if (arreglo_antiguo[i] != NULL && arreglo_antiguo[i]->key != NULL) { // Validamos que haya un dato válido en el antiguo
             insertMap(map, arreglo_antiguo[i]->key, arreglo_antiguo[i]->value);
             free(arreglo_antiguo[i]); // Vaciamos su memoria
@@ -176,3 +176,8 @@ void enlarge(HashMap * map) {
     }
     free(arreglo_antiguo);
 }
+
+
+
+
+
