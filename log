@@ -20,3 +20,9 @@ hashmap.c:48:32: error: too many arguments to function ‘malloc’
   672 | extern void *malloc (size_t __size) __THROW __attribute_malloc__
       |              ^~~~~~
 8a6d08a
+Mon Apr 20 02:24:58 AM UTC 2026: 
+ hashmap.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+ tests:  1|6
+total_score: 5/60
+dfea671
