@@ -37,3 +37,9 @@ hashmap.c:98:10: error: unused variable ‘posicionInicial’ [-Werror=unused-va
       |          ^~~~~~~~~~~~~~~
 cc1: all warnings being treated as errors
 8591820
+Mon Apr 20 02:29:36 AM UTC 2026: 
+ hashmap.c | 1 -
+ 1 file changed, 1 deletion(-)
+ tests:  11|2
+total_score: 40/60
+ff725b3

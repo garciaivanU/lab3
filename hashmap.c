@@ -95,7 +95,6 @@ void insertMap(HashMap * map, char * key, void * value) {
 
 Pair * searchMap(HashMap * map,  char * key) {   
     long posicion = hash(key, map->capacity);
-    long posicionInicial = posicion;
 
     while (map->buckets[posicion] != NULL) { // Recorremos hasta encontrar un valor NULL, ya que entonces no existiría
         if (map->buckets[posicion]->key != NULL && is_equal(map->buckets[posicion]->key, key) == 1) { // Validamos que sea la llave buscada
