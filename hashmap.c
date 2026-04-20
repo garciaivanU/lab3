@@ -114,7 +114,7 @@ Pair * searchMap(HashMap * map,  char * key) {
 // Recuerde actualizar la variable size.
 
 void eraseMap(HashMap * map,  char * key) {    
-    Pair* dato = searchMap(map, key); // Se busca
+    Pair* dato = searchMap(map, key); // Se busca la key dentro del map
     if (dato != NULL) {
         dato->key = NULL;
         map->size--;
@@ -159,12 +159,20 @@ Pair * nextMap(HashMap * map) {
 //   e - Inserte los elementos válidos del arreglo old_buckets en el mapa (use la función insertMap que ya implementó).
 
 void enlarge(HashMap * map) {
-    enlarge_called = 1; //no borrar (testing purposes)
+    enlarge_called = 1; // No borrar
 
+    Pair ** arreglo_antiguo = map->buckets; // auxiliar para los datos
+    long capacidad_antigua = map->capacity;
 
+    map->capacity *= 2; // Actualizar la capacidad
+    map->buckets = (Pair **) calloc(map->capacity, sizeof(Pair *)); // Se reinicia el arreglo en el map original con el tamaño nuevo para los datos.
+    map->size = 0;
+
+    for (long i = 0; i < old_capacity; i++) {
+        if (arreglo_antiguo[i] != NULL && arreglo_antiguo[i]->key != NULL) { // Validamos que haya un dato válido en el antiguo
+            insertMap(map, arreglo_antiguo[i]->key, arreglo_antiguo[i]->value);
+            free(arreglo_antiguo[i]); // Vaciamos su memoria
+        }
+    }
+    free(arreglo_antiguo);
 }
-
-
-
-
-
