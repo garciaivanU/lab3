@@ -26,3 +26,14 @@ Mon Apr 20 02:24:58 AM UTC 2026:
  tests:  1|6
 total_score: 5/60
 dfea671
+Mon Apr 20 02:28:55 AM UTC 2026: 
+ hashmap.c | 34 ++++++++++++++++++++++++++++++++--
+ 1 file changed, 32 insertions(+), 2 deletions(-)
+Compilation failed
+In file included from test.c:5:
+hashmap.c: In function ‘searchMap’:
+hashmap.c:98:10: error: unused variable ‘posicionInicial’ [-Werror=unused-variable]
+   98 |     long posicionInicial = posicion;
+      |          ^~~~~~~~~~~~~~~
+cc1: all warnings being treated as errors
+8591820

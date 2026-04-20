@@ -66,7 +66,24 @@ HashMap * createMap(long capacity) {
 // No inserte claves repetidas. Recuerde que el arreglo es circular. Recuerde actualizar la variable size.
 
 void insertMap(HashMap * map, char * key, void * value) {
+    long posicion = hash(key, map->capacity); // posición mediante hash
 
+    while (map->buckets[posicion] != NULL && map->buckets[posicion]->key != NULL) { // Busco una posición donde no hayan datos o se haya borrado un dato
+        if (is_equal(map->buckets[posicion]->key, key)) { // Ya existe
+            map->current = posicion;
+            return;
+        }
+        posicion = (posicion + 1) % map->capacity;
+    }
+
+    if (map->buckets[posicion] == NULL) map->buckets[posicion] = createPair(key, value); // Si estaba vacío se crea
+    else { // Si fue borrado el dato se sobreescribe en esa casilla
+        map->buckets[posicion]->key = key;
+        map->buckets[posicion]->value = value;
+    }
+    map->size++;
+    map->current = posicion;
+    return;
 }
 
 // 3. Implemente la función Pair * searchMap(HashMap * map, char * key), la cual retorna el Pair asociado a la clave ingresada. 
@@ -77,7 +94,16 @@ void insertMap(HashMap * map, char * key, void * value) {
 // Recuerde actualizar el índice current a la posición encontrada. Recuerde que el arreglo es circular.
 
 Pair * searchMap(HashMap * map,  char * key) {   
+    long posicion = hash(key, map->capacity);
+    long posicionInicial = posicion;
 
+    while (map->buckets[posicion] != NULL) { // Recorremos hasta encontrar un valor NULL, ya que entonces no existiría
+        if (map->buckets[posicion]->key != NULL && is_equal(map->buckets[posicion]->key, key) == 1) { // Validamos que sea la llave buscada
+            map->current = posicion;
+            return map->buckets[posicion];
+        }
+        posicion = (posicion + 1) % map->capacity;
+    }
 
     return NULL;
 }
@@ -89,8 +115,12 @@ Pair * searchMap(HashMap * map,  char * key) {
 // Recuerde actualizar la variable size.
 
 void eraseMap(HashMap * map,  char * key) {    
-
-
+    Pair* dato = searchMap(map, key); // Se busca
+    if (dato != NULL) {
+        dato->key = NULL;
+        map->size--;
+    }
+    return;
 }
 
 // 5. Implemente las funciones para recorrer la estructura: Pair * firstMap(HashMap * map) retorna el primer Pair válido del arreglo buckets. 
