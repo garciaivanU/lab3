@@ -127,13 +127,23 @@ void eraseMap(HashMap * map,  char * key) {
 // Recuerde actualizar el índice.
 
 Pair * firstMap(HashMap * map) {
-
+    for (size_t i = 0; i < map->capacity; i++) { // Busco desde el primer dato del array
+        if (map->buckets[i] != NULL && map->buckets[i]->key != NULL) { // Validamos que la casilla exista y tenga una clave valida
+            map->current = i;
+            return map->buckets[i];
+        }
+    }
     return NULL;
 }
 
 Pair * nextMap(HashMap * map) {
-
-    return NULL;
+    for (size_t i = map->current + 1; i < map->capacity; i++) { // Busco desde la siguiente posición a la del current
+        if (map->buckets[i] != NULL && map->buckets[i]->key != NULL) {
+            map->current = i;
+            return map->buckets[i];
+        }
+    }
+    return NULL; 
 }
 
 
